@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Expense Tracker</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            width:700px;
+            margin:auto;
+        }
+
+        input{
+            padding:10px;
+            margin:5px;
+        }
+
+        button{
+            padding:10px;
+        }
+
+        table{
+            width:100%;
+            margin-top:20px;
+            border-collapse:collapse;
+        }
+
+        th,td{
+            border:1px solid gray;
+            padding:10px;
+            text-align:center;
+        }
+
+        a{
+            color:red;
+            text-decoration:none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h1>Expense Tracker</h1>
+
+<form action="/add" method="POST">
+
+    <input
+        type="text"
+        name="title"
+        placeholder="Expense Title"
+        required>
+
+    <input
+        type="number"
+        step="0.01"
+        name="amount"
+        placeholder="Amount"
+        required>
+
+    <input
+        type="text"
+        name="category"
+        placeholder="Category"
+        required>
+
+    <button>Add Expense</button>
+
+</form>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+
+<th>Title</th>
+
+<th>Amount</th>
+
+<th>Category</th>
+
+<th>Action</th>
+
+</tr>
+
+{% for expense in expenses %}
+
+<tr>
+
+<td>{{expense.id}}</td>
+
+<td>{{expense.title}}</td>
+
+<td>{{expense.amount}}</td>
+
+<td>{{expense.category}}</td>
+
+<td>
+
+    <a href="/edit/{{expense.id}}">Edit</a>
+    
+    |
+    
+    <a href="/delete/{{expense.id}}">Delete</a>
+    
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html>
